@@ -1,0 +1,12 @@
+{
+  "name": "ffmpegdotjs",
+  "version": "0.0.1",
+  "description": "FFMPEG module for nodejs",
+  "main": "index.js",
+  "keywords": [
+    "ffmpeg",
+    "nodejs"
+  ],
+  "author": "Tharaka Romesh",
+  "license": "ISC"
+}
