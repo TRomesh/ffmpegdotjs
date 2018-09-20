@@ -63,21 +63,7 @@ const ffmpegjs = {
   compressvideo: (input, output) => {
     return new Promise(function(resolve, reject) {
       exec(
-        `ffmpeg -hide_banner -loglevel quiet -i ${input} -vcodec h264 -acodec mp3 ${output}.mp3`,
-        (error, stdout, stderr) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          resolve(stdout);
-        }
-      );
-    });
-  },
-  compressvideo: (input, output) => {
-    return new Promise(function(resolve, reject) {
-      exec(
-        `ffmpeg -hide_banner -loglevel quiet -i ${input} -vcodec h264 -acodec mp3 ${output}.mp3`,
+        `ffmpeg -hide_banner -loglevel quiet -i ${input} -vcodec h264 -acodec mp3 ${output}.mp4`,
         (error, stdout, stderr) => {
           if (error) {
             reject(error);
