@@ -3,10 +3,16 @@
   "version": "0.0.2",
   "description": "FFMPEG module for nodejs",
   "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
   "keywords": [
     "ffmpeg",
     "nodejs"
   ],
   "author": "Tharaka Romesh",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }
