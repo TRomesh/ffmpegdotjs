@@ -10,7 +10,7 @@ const ffmpegjs = {
             reject(error);
             return;
           }
-          resolve(stdout);
+          resolve(output);
         }
       );
     });
@@ -69,7 +69,7 @@ const ffmpegjs = {
             reject(error);
             return;
           }
-          resolve(stdout);
+          resolve(output + ".mp4");
         }
       );
     });
@@ -98,6 +98,34 @@ const ffmpegjs = {
             return;
           }
           resolve(stdout);
+        }
+      );
+    });
+  },
+  addoverlaytext: (input, text, output) => {
+    return new Promise(function(resolve, reject) {
+      exec(
+        `ffmpeg -hide_banner -loglevel quiet -i ${input} -vf 'drawtext=${text}:x=0:y=0:fontfile=/asset/times-new-roman.ttf:fontsize=64:fontcolor=white:borderw=3:bordercolor=black:box=0:enable='between(t,23,31)'' ${output}.mp4`,
+        (error, stdout, stderr) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          resolve("test.mp4");
+        }
+      );
+    });
+  },
+  addaudiotovideo: (input, audio, output) => {
+    return new Promise(function(resolve, reject) {
+      exec(
+        `ffmpeg -hide_banner -loglevel quiet -i ${input} -i ${audio} -map 0:0 -map 1:0 -vcodec copy -acodec copy ${output}.mp4`,
+        (error, stdout, stderr) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          resolve(`${output}.mp4`);
         }
       );
     });

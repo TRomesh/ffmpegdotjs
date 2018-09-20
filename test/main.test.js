@@ -1,13 +1,34 @@
 const ffmpejdotjs = require("../index");
 
-const compress = async (input, output) => {
+test("Video Compression", async () => {
   try {
-    return await ffmpejdotjs.compressvideo(input, output);
+    let data = await ffmpejdotjs.compressvideo(
+      "TensorFlow-for-Beginners.mp4",
+      "test"
+    );
+    expect(data).toBe("test.mp4");
   } catch (error) {
-    return "error";
+    throw error;
   }
-};
+});
 
-test("Video Compression", () => {
-  expect(compress("TensorFlow-for-Beginners.mp4", "test")).toBe("test.mp4");
+test("Video Thumbnail", async () => {
+  try {
+    let data = await ffmpejdotjs.generateimage(
+      "TensorFlow-for-Beginners.mp4",
+      "test"
+    );
+    expect(data).toBe("test");
+  } catch (error) {
+    throw error;
+  }
+});
+
+test.skip("Video Text", async () => {
+  let data = await ffmpejdotjs.addoverlaytext(
+    "TensorFlow-for-Beginners.mp4",
+    "TEST",
+    "test"
+  );
+  expect(data).toBe("test.mp4");
 });
