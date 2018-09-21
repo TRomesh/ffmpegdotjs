@@ -102,10 +102,10 @@ const ffmpegjs = {
       );
     });
   },
-  addoverlaytext: (input, text, output) => {
+  addoverlaytext: (input, text, x, y, output) => {
     return new Promise(function(resolve, reject) {
       exec(
-        `ffmpeg -hide_banner -loglevel quiet -i ${input} -vf 'drawtext=${text}:x=0:y=0:fontfile=/asset/times-new-roman.ttf:fontsize=64:fontcolor=white:borderw=3:bordercolor=black:box=0:enable='between(t,23,31)'' ${output}.mp4`,
+        `ffmpeg -hide_banner -loglevel quiet -i ${input} -vf 'drawtext=fontfile=/asset/times-new-roman.ttf:fontsize=64:fontcolor=white:borderw=3:bordercolor=black:box=0:text=${text}:x=${x}:y=${y}' ${output}.mp4`,
         (error, stdout, stderr) => {
           if (error) {
             reject(error);
@@ -120,6 +120,20 @@ const ffmpegjs = {
     return new Promise(function(resolve, reject) {
       exec(
         `ffmpeg -hide_banner -loglevel quiet -i ${input} -i ${audio} -map 0:0 -map 1:0 -vcodec copy -acodec copy ${output}.mp4`,
+        (error, stdout, stderr) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+          resolve(`${output}.mp4`);
+        }
+      );
+    });
+  },
+  addaudiotoimage: (audio, image, output) => {
+    return new Promise(function(resolve, reject) {
+      exec(
+        `ffmpeg -hide_banner -loglevel quiet -i ${audio} -loop 1 -f image2 -i ${image} -t 188 ${output}.mp4`,
         (error, stdout, stderr) => {
           if (error) {
             reject(error);

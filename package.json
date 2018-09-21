@@ -1,6 +1,6 @@
 {
   "name": "ffmpegdotjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "FFMPEG module for nodejs",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,10 @@
     "nodejs"
   ],
   "author": "Tharaka Romesh",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://github.com/TRomesh/ffmpegdotjs",
+  "repository": "github:TRomesh/ffmpegdotjs",
+  "bugs": "https://github.com/TRomesh/ffmpegdotjs/issues",
   "devDependencies": {
     "jest": "^23.6.0"
   }

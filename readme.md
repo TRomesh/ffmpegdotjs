@@ -1,6 +1,6 @@
 # ffmpegdotjs
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/TRomesh/ffmpegdotjs/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/ffmpegdotjs.svg?style=flat)](https://www.npmjs.com/package/ffmpegdotjs)[![npm downloads](https://img.shields.io/npm/dm/ffmpegdotjs.svg?style=flat-square)](https://www.npmjs.com/package/ffmpegdotjs)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/TRomesh/ffmpegdotjs/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/ffmpegdotjs.svg?style=flat)](https://www.npmjs.com/package/ffmpegdotjs) [![npm downloads](https://img.shields.io/npm/dm/ffmpegdotjs.svg?style=flat-square)](https://www.npmjs.com/package/ffmpegdotjs)
 
 Coming Soon!
 
