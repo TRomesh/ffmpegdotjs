@@ -1,6 +1,6 @@
 {
   "name": "ffmpegdotjs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "FFMPEG module for nodejs",
   "main": "index.js",
   "scripts": {

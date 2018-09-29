@@ -34,6 +34,18 @@ $ yarn add ffmpegdotjs
 - [x] Audio Extraction
 - [x] Video Compression
 - [x] Overlay Image
+- [x] Make Video from Audio and Images
+- [x] Trim Video
+
+## Usage
+
+```bash
+const ffmpejdotjs = require("ffmpejdotjs");
+
+ffmpejdotjs.trimvideo("Test.mp4",0,30,"test").then((file)=>{
+        console.log(file);
+});
+```
 
 ### License
 

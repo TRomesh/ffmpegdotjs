@@ -59,6 +59,20 @@ test("Add audio to image ", async () => {
     let data = await ffmpejdotjs.addaudiotoimage(
       "ubuntu.mp3",
       "logo.png",
+      "testaudio"
+    );
+    expect(data).toBe("testaudio.mp4");
+  } catch (error) {
+    throw error;
+  }
+});
+
+test("Trim video ", async () => {
+  try {
+    let data = await ffmpejdotjs.trimvideo(
+      "TensorFlow-for-Beginners.mp4",
+      0,
+      30,
       "test"
     );
     expect(data).toBe("test.mp4");
