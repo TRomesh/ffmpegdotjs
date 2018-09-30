@@ -54,7 +54,7 @@ test.skip("Add image to video", async () => {
   }
 });
 
-test("Add audio to image ", async () => {
+test.skip("Add audio to image ", async () => {
   try {
     let data = await ffmpejdotjs.addaudiotoimage(
       "ubuntu.mp3",
@@ -67,7 +67,7 @@ test("Add audio to image ", async () => {
   }
 });
 
-test("Trim video ", async () => {
+test.skip("Trim video ", async () => {
   try {
     let data = await ffmpejdotjs.trimvideo(
       "TensorFlow-for-Beginners.mp4",
@@ -76,6 +76,31 @@ test("Trim video ", async () => {
       "test"
     );
     expect(data).toBe("test.mp4");
+  } catch (error) {
+    throw error;
+  }
+});
+
+test.skip("Concat video ", async () => {
+  try {
+    let data = await ffmpejdotjs.concatvideos(
+      ["testaudio.mp4", "test.mp4"],
+      "test123"
+    );
+    expect(data).toBe("test123.mp4");
+  } catch (error) {
+    throw error;
+  }
+});
+
+test("Merge video ", async () => {
+  try {
+    let data = await ffmpejdotjs.mergevideos(
+      "testaudio.mp4",
+      "test.mp4",
+      "test123"
+    );
+    expect(data).toBe("test123.mp4");
   } catch (error) {
     throw error;
   }
