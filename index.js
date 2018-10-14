@@ -27,6 +27,8 @@ const filestostring = array => {
   return attr;
 };
 
+const degrees = (degree) => `${degree}*PI/180`;
+
 const ffmpegjs = {
   generateimage: (input, output) => {
     return new Promise(function(resolve, reject) {
@@ -250,6 +252,24 @@ const ffmpegjs = {
       if (fs.existsSync(input1) && fs.existsSync(input2)) {
         exec(
           `ffmpeg -hide_banner -loglevel quiet -i ${input1} -i ${input2} -filter_complex hstack ${output}.mp4`,
+          (error, stdout, stderr) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(`${output}.mp4`);
+          }
+        );
+      } else {
+        reject(new Error("ffmpegdotjs could not find file"));
+      }
+    });
+  },
+  rotatevideos: (input, degree, output) => {
+    return new Promise(function(resolve, reject) {
+      if (fs.existsSync(input)) {
+        exec(
+          `ffmpeg -hide_banner -loglevel quiet -i ${input1} -vf rotate=${degrees(degree)} -codec:a copy  ${output}.mp4`,
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
