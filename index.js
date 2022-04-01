@@ -1,4 +1,4 @@
-const { exec } = require("child_process");
+const { execFile } = require("child_process");
 const fs = require("fs");
 
 const filestostring = array => {
@@ -33,8 +33,8 @@ const ffmpegjs = {
   generateimage: (input, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input} -ss 00:00:21 -vsync 0 -frames:v 1 -y ${output}_%03d.png`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input} -ss 00:00:21 -vsync 0 -frames:v 1 -y ${output}_%03d.png`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -52,8 +52,8 @@ const ffmpegjs = {
   convertvideo: (input, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input} -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input} -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -71,8 +71,8 @@ const ffmpegjs = {
   generategif: (input, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input} -ss 15 -t 5 -vf scale=320:180 -y ${output}.gif`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input} -ss 15 -t 5 -vf scale=320:180 -y ${output}.gif`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -90,8 +90,8 @@ const ffmpegjs = {
   extractaudio: (input, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input} -f mp3 -ab 192000 -vn -y ${output}.mp3`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input} -f mp3 -ab 192000 -vn -y ${output}.mp3`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -108,8 +108,8 @@ const ffmpegjs = {
   compressvideo: (input, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input} -vcodec h264 -acodec mp3 -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input} -vcodec h264 -acodec mp3 -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -126,8 +126,8 @@ const ffmpegjs = {
   addoverlayimagetime: (input1, input2, start, end, x, y, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input1) && fs.existsSync(input2)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input1} -i ${input2} -filter_complex "[0:v][1:v] overlay=${x}:${y}:enable='between(t,${start},${end})'" -pix_fmt yuv420p -c:a copy -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input1} -i ${input2} -filter_complex "[0:v][1:v] overlay=${x}:${y}:enable='between(t,${start},${end})'" -pix_fmt yuv420p -c:a copy -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -144,8 +144,8 @@ const ffmpegjs = {
   addoverlayimage: (input1, input2, x, y, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input1) && fs.existsSync(input2)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input1} -i ${input2} -filter_complex "[0:v][1:v] overlay=${x}:${y}" -codec:a copy -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input1} -i ${input2} -filter_complex "[0:v][1:v] overlay=${x}:${y}" -codec:a copy -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -162,8 +162,8 @@ const ffmpegjs = {
   addoverlaytext: (input, text, x, y, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input} -vf 'drawtext=fontfile=/asset/times-new-roman.ttf:fontsize=64:fontcolor=white:borderw=3:bordercolor=black:box=0:text=${text}:x=${x}:y=${y}' -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input} -vf 'drawtext=fontfile=/asset/times-new-roman.ttf:fontsize=64:fontcolor=white:borderw=3:bordercolor=black:box=0:text=${text}:x=${x}:y=${y}' -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -180,8 +180,8 @@ const ffmpegjs = {
   addaudiotovideo: (input, audio, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input) && fs.existsSync(audio)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input} -i ${audio} -map 0:0 -map 1:0 -vcodec copy -acodec copy -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input} -i ${audio} -map 0:0 -map 1:0 -vcodec copy -acodec copy -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -198,8 +198,8 @@ const ffmpegjs = {
   addaudiotoimage: (audio, image, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(audio) && fs.existsSync(image)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${audio} -loop 1 -f image2 -i ${image} -t 188 -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${audio} -loop 1 -f image2 -i ${image} -t 188 -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -216,8 +216,8 @@ const ffmpegjs = {
   trimvideo: (input, start, duration, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -ss ${start} -i ${input} -t ${duration} -c copy -y ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -ss ${start} -i ${input} -t ${duration} -c copy -y ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -235,8 +235,8 @@ const ffmpegjs = {
   concatvideos: (inputs, output) => {
     return new Promise(function(resolve, reject) {
       let files = filestostring(inputs);
-      exec(
-        `ffmpeg -hide_banner -loglevel quiet -f -i "concat:${files}" -c copy -y ${output}.mp4`,
+      execFile(
+        'ffmpeg', `-hide_banner -loglevel quiet -f -i "concat:${files}" -c copy -y ${output}.mp4`.split(" "),
         (error, stdout, stderr) => {
           if (error) {
             reject(error);
@@ -250,8 +250,8 @@ const ffmpegjs = {
   mergevideos: (input1, input2, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input1) && fs.existsSync(input2)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input1} -i ${input2} -filter_complex hstack ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input1} -i ${input2} -filter_complex hstack ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
@@ -268,8 +268,8 @@ const ffmpegjs = {
   rotatevideos: (input, degree, output) => {
     return new Promise(function(resolve, reject) {
       if (fs.existsSync(input)) {
-        exec(
-          `ffmpeg -hide_banner -loglevel quiet -i ${input1} -vf rotate=${degrees(degree)} -codec:a copy  ${output}.mp4`,
+        execFile(
+          'ffmpeg', `-hide_banner -loglevel quiet -i ${input1} -vf rotate=${degrees(degree)} -codec:a copy  ${output}.mp4`.split(" "),
           (error, stdout, stderr) => {
             if (error) {
               reject(error);
